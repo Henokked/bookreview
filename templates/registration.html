@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet"  type= "text/css" href= "{{ url_for('static',filename='styles/registration.css') }}"/>
+      <title>Registartion </title>
+  </head>
+  <body>
+    <div class="header">
+        
+        <h6 ><a href="/" class="title">Book Store</a></h6>
+        <!-- <div class="search">
+          <input type="text" name="search" class="form-control" />
+        </div> -->
+        <div class="register">
+          <a href="registration" class="account">Sign up</a>
+          <a href="login" class="account">Login</a>
+        </div>
+      </div>
+     <div class="form__cont">
+      {% if error != Undefined:%}
+      <h3 class="alert alert-danger" role="alert">{{error}}</h3>
+      {% endif %}  
+         <form class="form-group" method = "POST">
+             <label for="email" class="label2">Email</label>
+             <input type="email" class="form-control" name="email" required></input>
+             <label for="name" class="label2">User name</label>
+             <input type="text" class="form-control" name="name" required></input>
+             <label for="password" class="label2">Password</label>
+             <input type="password" class="form-control" name="password" required></input>
+             <button class="register__button">Register</button>
+            </form>
+            <a href="login" >Already have an account?</a>
+        </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

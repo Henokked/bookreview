@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='styles/app.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <!-- <div class="mainpage__cont"> -->
+    <div class="header">
+      <h6><a href="/" class="title">Book Store</a></h6>
+      {% if user != None:%}
+      <div class="register">
+        <p class="account name">{{user}}</p>
+        <a href="logout" class="account">Logout</a>
+      </div>
+      {% else:%}
+      <div class="register">
+        <a href="registration" class="account">Sign up</a>
+        <a href="login" class="account">Login</a>
+      </div>
+      {% endif %}
+    </div>
+
+    {% if user != None:%}
+    <form class="search" method="POST" action="{{url_for('search')}}">
+      <input type="text" name="search" class="form-control" />
+      <button class="search__txt">Search</button>
+    </form>
+    {% endif %}
+    <!-- </div> -->
+  </body>
+</html>

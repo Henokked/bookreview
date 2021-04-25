@@ -1,0 +1,56 @@
+.form__cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  min-height: 50vh;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  background-color: lightgray;
+  padding: 10px;
+  border-radius: 15px;
+  width: 40%;
+  max-width: 400px;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(90, 90, 90);
+  height: 100px;
+}
+.title {
+  font-size: 28px;
+  margin-left: 10px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+.title:hover {
+  color: lightsalmon;
+  text-decoration: none;
+}
+.account {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  margin-right: 10px;
+  font-size: 25px;
+}
+.account:hover {
+  text-decoration: none;
+  color: lightsalmon;
+  margin-right: 10px;
+}
+
+.label2 {
+}
+.register__button {
+  align-self: center;
+  margin: 10px;
+
+  background-color: orange;
+}

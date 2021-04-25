@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='styles/app.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+  </head>
+  <body class="search__body">
+    <div class="mainpage__cont">
+      <div class="header">
+        <h6><a href="/" class="title">Book Store</a></h6>
+        {% if user != None:%}
+
+        <form class="form-group sc" method="GET" action="{{url_for('search')}}">
+          <input type="text" name="search" class="form-control" />
+          <button class="search__txt">Search</button>
+        </form>
+
+        <div class="register">
+          <p class="account name">{{user}}</p>
+          <a href="logout" class="account">Logout</a>
+        </div>
+        {% else:%}
+        <div class="register">
+          <a href="registration" class="account">Sign up</a>
+          <a href="login" class="account">Login</a>
+        </div>
+        {% endif %}
+      </div>
+      <h3>Bookpage</h3>
+      {%if noproduct %}
+      <h2>{{noproduct}}</h2>
+      {% else %}
+      <div class="seacrh__list">
+        {% for data in response %}
+        <div class="card">
+          <p class="card__text">Isbn:{{data[0]}}</p>
+          <p class="card__text">Title:{{data[1]}}</p>
+          <p class="card__text">Author{{data[2]}}</p>
+          <p class="card__text">Year:{{data[3]}}</p>
+          <p class="card__text">Review: {{review}}</p>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <div class="slider">
+        {% for data in response %}
+        <form
+          class="form-group review"
+          method="POST"
+          action="{{url_for('review')}}"
+        >
+          <p style="font-size: 20px">Rating</p>
+          <input
+            type="range"
+            name="range"
+            value="0"
+            min="0"
+            max="5"
+            oninput="this.nextElementSibling.value = this.value"
+          />
+          <output style="font-size: 20px">5</output>
+          <textarea
+            class="form-control"
+            placeholder="Your Review"
+            name="comment"
+            rows="3"
+          ></textarea>
+          <input type="text" name="isbnNo" value="{{data[0]}}" />
+          <button class="review__btn">Submit</button>
+          {% endfor %}
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

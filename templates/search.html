@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='styles/app.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+  </head>
+  <body class="search__body">
+    <div class="mainpage__cont">
+      <div class="header">
+        <h6><a href="/" class="title">Book Store</a></h6>
+        {% if user != None:%}
+
+        <form class="form-group sc" method="GET" action="{{url_for('search')}}">
+          <input type="text" name="search" class="form-control" />
+          <button class="search__txt">Search</button>
+        </form>
+
+        <div class="register">
+          <p class="account name">{{user}}</p>
+          <a href="logout" class="account">Logout</a>
+        </div>
+        {% else:%}
+        <div class="register">
+          <a href="registration" class="account">Sign up</a>
+          <a href="login" class="account">Login</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <h3>Search Results</h3>
+    {%if noproduct %}
+    <h2>{{noproduct}}</h2>
+    {% else %}
+    <div class="seacrh__list">
+      {% for data in response %}
+      <a href="{{url_for('bookpage',isbn = data[0])}}" class="card">
+        <p class="card__text">Title:{{data[1]}}</p>
+        <p class="card__text">Author:{{data[2]}}</p>
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </body>
+</html>
